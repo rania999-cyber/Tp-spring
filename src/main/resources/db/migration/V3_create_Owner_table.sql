@@ -1,0 +1,5 @@
+CREATE TABLE Owner (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    contactInformation VARCHAR(255)
+);
