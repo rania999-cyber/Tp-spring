@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.Models.RentalContract;
 import com.example.Service.RentalContractService;
 
+import io.swagger.models.Model;
+
 import java.util.List;
 
 @RestController
@@ -30,12 +32,26 @@ public class RentalContractController {
     }
 
     @PostMapping
-    public RentalContract createRentalContract(@RequestBody RentalContract rentalContract) {
+    public RentalContract saveRentalContract(@RequestBody RentalContract rentalContract) {
         return rentalContractService.save(rentalContract);
     }
 
     @DeleteMapping("/{id}")
     public void deleteRentalContract(@PathVariable Long id) {
         rentalContractService.delete(id);
+    }
+
+
+    
+    @GetMapping("/add-contract")
+    public String showAddContractForm(Model model) {
+        // Implementation...
+        return "add-edit-RentalContract";
+    }
+
+    @GetMapping("/edit-contract/{contractId}")
+    public String showEditContractForm(@PathVariable Long contractId, Model model) {
+        // Implementation...
+        return "add-edit-RentalContract";
     }
 }

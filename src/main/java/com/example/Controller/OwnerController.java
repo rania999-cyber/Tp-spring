@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.Models.Owner;
 import com.example.Service.OwnerService;
 
+import io.swagger.models.Model;
+
 @RestController
 @RequestMapping("/owners")
 public class OwnerController {
@@ -34,6 +36,26 @@ public class OwnerController {
             ownerService.delete(owner);
         }
     }
+
+    
+    @GetMapping("/owners")
+public String listOwners(Model model) {
+    // Implementation...
+    return "list-Owner";
+}
+
+@GetMapping("/owners/add-owner")
+public String showAddOwnerForm(Model model) {
+    // Implementation...
+    return "add-edit-Owner";
+}
+
+@GetMapping("/owners/edit-owner/{id}")
+public String showEditOwnerForm(@PathVariable Long id, Model model) {
+    // Implementation...
+    return "add-edit-Owner";
+}
+
 }
 
 

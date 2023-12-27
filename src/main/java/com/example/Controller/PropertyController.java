@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.Models.Property;
 import com.example.Service.PropertyService;
 
+import io.swagger.models.Model;
+
 @RestController
 @RequestMapping("/properties")
 public class PropertyController {
@@ -34,5 +36,17 @@ public class PropertyController {
             propertyService.deleteProperty(property);
         }
     }
+
+    @GetMapping("/add-property")
+    public String showAddPropertyForm(Model model) {
+        // Implementation...
+        return "add-edit-Property";
+    }
+
+    @GetMapping("/edit-property/{propertyId}")
+    public String showEditPropertyForm(@PathVariable Long propertyId, Model model) {
+        // Implementation...
+        return "add-edit-Property";
+    }  
 }
 

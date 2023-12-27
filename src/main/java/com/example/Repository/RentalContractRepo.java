@@ -9,5 +9,4 @@ import com.example.Models.RentalContract;
 public interface RentalContractRepo extends JpaRepository<RentalContract, Long> {
 
     List<RentalContract> getAll();
-    // You can add custom query methods if needed
-}
+ }

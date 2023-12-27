@@ -24,8 +24,7 @@ public class RentalContract {
     private String tenant;
     private double monthlyRent;
 
-    // Constructors (if needed)
-
+ 
     // Getters and Setters
     public Long getId() {
         return id;

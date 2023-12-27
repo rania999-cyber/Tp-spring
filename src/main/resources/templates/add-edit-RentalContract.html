@@ -3,60 +3,40 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Add Staff</title>
-    <meta name="viewport" content="width=device-width,
-initial-scale=1">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/b
-ootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-    >
+    <title>Add/Edit Rental Contract</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- Add other styling or libraries as needed -->
 </head>
 <body>
-<div class="container my-5">
-    <h3> Add Staff</h3>
-    <div class="card">
-        <div class="card-body">
-            <div class="col-md-10">
-                <form action="#" th:action="@{/save-staff}"
-                      th:object="${staff}" method="post">
-                    <div class="row">
-                        <div class="form-group col-md-8">
-                            <label for="name"
-                                   class="col-form-label">Name</label>
-                            <input type="text"
-                                   th:field="*{name}" class="form-control"
-                                   id="name"
-                                   placeholder="Enter Name" />
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label for="name"
-                                   class="col-form-label">Designation</label>
-                            <input type="text"
-                                   th:field="*{desgn}" class="form-control"
-                                   id="desgn"
-                                   placeholder="Enter Designation" />
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label for="email"
-                                   class="col-form-label">Email</label>
-                            <input type="text"
-                                   th:field="*{emailId}" class="form-control"
-                                   id="email"
-                                   placeholder="Email Id" />
-                        </div>
-                        <div class="col-md-6">
-                            <input type="submit" class="btn
-btn-primary" value=" Submit ">
-                        </div>
-                        <input type="hidden" id="id"
-                               th:field="*{id}">
-                    </div>
-                </form>
+    <div class="container my-2">
+        <h3 th:if="${rentalContract.id == null}">Add Rental Contract</h3>
+        <h3 th:if="${rentalContract.id != null}">Edit Rental Contract</h3>
+        <form th:action="@{/rental-contracts/saveContract}" th:object="${rentalContract}" method="post">
+            <div class="form-group">
+                <label for="property">Property:</label>
+                <select class="form-control" id="property" th:field="*{property}" required>
+                    <option th:each="property : ${properties}" th:value="${property}" th:text="${property.propertyName}"></option>
+                </select>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="owner">Owner:</label>
+                <select class="form-control" id="owner" th:field="*{owner}" required>
+                    <option th:each="owner : ${owners}" th:value="${owner}" th:text="${owner.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tenant">Tenant:</label>
+                <input type="text" class="form-control" id="tenant" th:field="*{tenant}" required>
+            </div>
+            <div class="form-group">
+                <label for="monthlyRent">Monthly Rent:</label>
+                <input type="number" class="form-control" id="monthlyRent" th:field="*{monthlyRent}" required>
+            </div>
+            <!-- Add other form fields as needed -->
+            <button type="submit" class="btn btn-primary">Save Rental Contract</button>
+        </form>
+        <a th:href="@{/rental-contracts}" class="btn btn-secondary mt-2">Back to List</a>
     </div>
-</div>
 </body>
 </html>
